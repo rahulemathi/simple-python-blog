@@ -17,9 +17,14 @@ import sqlite3
 from bcrypt import hashpw, gensalt ,checkpw
 from datetime import date
 import requests
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your secret key'
+app.secret_key = 'somerandomtest3q8h7ufbefiukm4fbi'
+api_key = os.getenv('OPENROUTER_API')
 
 @app.route('/')
 def index():
@@ -132,7 +137,7 @@ def signin():
         if user and checkpw(password.encode('utf-8'),user[3]):
             session['user_id'] = user[0]
             session['username'] = user[1]
-            return render_template('index.html')
+            return redirect(url_for('index'))
             
 
 @app.route('/comment',methods = ['POST'])
@@ -187,7 +192,7 @@ def generate_blog(title):
     response = requests.post(
   url="https://openrouter.ai/api/v1/chat/completions",
     headers={
-        "Authorization": "Bearer <YOUR_API_KEY>",
+        "Authorization": "Bearer " + api_key,
         "Content-Type": "application/json"
     },
     json={

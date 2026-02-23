@@ -1,18 +1,78 @@
 {% extends "base.html" %}
 
-{% block title %}  {% endblock %}
+{% block title %} Create Account {% endblock %}
 
 {% block content %}
+<div class="container auth-container mb-5">
+  <div class="auth-card text-center">
+    <div class="mb-4">
+      <div
+        class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-circle mb-3 p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M19 8v6" />
+          <path d="M22 11h-6" />
+        </svg>
+      </div>
+      <h3 class="fw-bold text-white mb-2">Join NexusBlog</h3>
+      <p class="text-muted small">Start writing your stories today</p>
+    </div>
 
-<div class="container mt-5" style="max-width: 400px;">
-  <h3 class="mb-3">Register</h3>
+    <form action="register" method="post" class="text-start">
+      <div class="mb-3">
+        <label class="form-label small text-white-50">Full Name</label>
+        <div class="position-relative">
+          <span class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+              <circle cx="14" cy="7" r="4" />
+            </svg>
+          </span>
+          <input type="text" class="form-control ps-5 bg-transparent text-white border-secondary border-opacity-50"
+            placeholder="John Doe" name="name" required>
+        </div>
+      </div>
 
-  <form action="register" method="post">
-    <input class="form-control mb-3" placeholder="Name" name="name">
-    <input class="form-control mb-3" placeholder="Email" name="email">
-    <input type="password" class="form-control mb-3" placeholder="Password" name="password">
-    <button class="btn btn-success w-100">Create Account</button>
-  </form>
+      <div class="mb-3">
+        <label class="form-label small text-white-50">Email Address</label>
+        <div class="position-relative">
+          <span class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </span>
+          <input type="email" class="form-control ps-5 bg-transparent text-white border-secondary border-opacity-50"
+            placeholder="you@example.com" name="email" required>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label small text-white-50">Password</label>
+        <div class="position-relative">
+          <span class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </span>
+          <input type="password" class="form-control ps-5 bg-transparent text-white border-secondary border-opacity-50"
+            placeholder="••••••••" name="password" required>
+        </div>
+      </div>
+
+      <button class="btn btn-success w-100 py-2 rounded-8 mb-4 shadow" type="submit">Create Account</button>
+
+      <div class="text-center">
+        <span class="text-muted small">Already have an account?</span>
+        <a href="{{url_for('signin')}}" class="text-primary text-decoration-none fw-medium small ms-1">Sign in</a>
+      </div>
+    </form>
+  </div>
 </div>
-
 {% endblock %}

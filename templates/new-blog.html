@@ -1,33 +1,61 @@
 {% extends "base.html" %}
 
-{% block title %} New Blog {% endblock %}
+{% block title %} Write a Story {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2>Create New Blog</h2>
+<div class="container mt-5 mb-5" style="max-width: 700px;">
+  <div class="mb-5">
+    <h2 class="display-6 fw-bold text-white mb-2">Create New Story</h2>
+    <p class="text-white">Share your knowledge, experience, or ideas.</p>
+  </div>
 
-  <form action="form-insert" method="post">
-    <div class="mb-3">
-      <label class="form-label">Title</label>
-      <input type="text" name="title" class="form-control" value="{{title or ''}}" required>
+  <div class="card border-0 shadow-lg" style="background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(16px);">
+    <div class="card-body p-4 p-md-5">
+      <form action="form-insert" method="post">
+
+        <div class="mb-4">
+          <label class="form-label text-white-50 fw-semibold">Story Title</label>
+          <input type="text" name="title"
+            class="form-control form-control-lg bg-transparent text-white border-secondary border-opacity-50"
+            placeholder="E.g., The Future of Web Design" value="{{title or ''}}" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label text-white-50 fw-semibold">Cover Image URL</label>
+          <input type="url" name="image"
+            class="form-control bg-transparent text-white border-secondary border-opacity-50"
+            placeholder="https://example.com/image.jpg" value="{{image or ''}}" required>
+        </div>
+
+
+
+
+
+        <div class="mb-5">
+          <label class="form-label text-white-50 fw-semibold">Story Content</label>
+          <textarea class="form-control bg-transparent text-white border-secondary border-opacity-50" name="description"
+            rows="12" placeholder="Write your story here...">{{description or ''}}</textarea>
+        </div>
+
+        <div class="d-flex align-items-center mb-4 gap-3">
+          <button class="btn btn-generate rounded-pill px-4 py-2" name="action" value="generate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+            </svg>
+            AI Generate Draft
+          </button>
+          <small class="text-white">Need inspiration? Let AI write a draft based on your title.</small>
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 pt-4 border-top border-secondary border-opacity-25">
+          <a href="{{url_for('my_blogs')}}" class="btn btn-outline-light rounded-pill px-4">Cancel</a>
+          <button class="btn btn-primary rounded-pill px-5 shadow" name="action" value="submit" type="submit">Publish
+            Story</button>
+        </div>
+      </form>
     </div>
-
-    <div class="mb-3">
-      <button class="btn btn-success" name="action" value="generate">generate</button>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Image URL</label>
-      <input type="text" name="image" class="form-control" value="{{image or ''}}" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Description</label>
-      <textarea class="form-control" name="description" rows="6">{{description or ''}}</textarea>
-    </div>
-
-    <button class="btn btn-primary" name="action" value="submit" type="submit">Publish</button>
-  </form>
+  </div>
 </div>
-
 {% endblock %}
