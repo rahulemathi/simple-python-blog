@@ -85,7 +85,12 @@ def view_blog(blog_id):
     cursor = conn.cursor()
     cursor.execute(''' SELECT * FROM blogs WHERE id = ?''', (blog_id,))
     blogs = cursor.fetchone()
-    cursor.execute(''' SELECT * FROM comments WHERE blog_id = ?''', (blog_id,))
+    cursor.execute(''' 
+        SELECT comments.*, users.username 
+        FROM comments 
+        JOIN users ON comments.user_id = users.id 
+        WHERE comments.blog_id = ?
+    ''', (blog_id,))
     comments = cursor.fetchall()
     conn.commit()
     conn.close()
